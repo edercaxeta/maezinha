@@ -322,7 +322,7 @@ function validarLogin() {
 
   if (email === emailCorreto && senha === senhaCorreta) {
     sessionStorage.setItem("authenticated", "true");
-    window.location.href = "maezinha/assets/pages/cadastroPro.html";
+    window.location.href = "./cadastroPro.html";
     return false;
   } else {
     alert("Credenciais inválidas");
