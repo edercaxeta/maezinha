@@ -48,7 +48,7 @@ function enviar(
     aceite: aceite,
   };
 
-  fetch("http://localhost:5249/api/Categoria", {
+  fetch("https://apiwpp.apaebrasil.org.br/user", {
     method: "POST",
     mode: "cors",
     headers: {
@@ -150,7 +150,7 @@ function salvar() {
 }
 
 function listar() {
-  fetch("http://localhost:5249/api/Categoria", {
+  fetch("https://apiwpp.apaebrasil.org.br/users", {
     method: "GET",
     mode: "cors",
     headers: {
@@ -164,7 +164,7 @@ function listar() {
     .catch((error) => {
       Swal.fire({
         title: "Erro",
-        text: "Houve um Erro ao Salvar os Dados",
+        text: "Houve um Erro ao listar os Dados",
         icon: "error",
       });
     });
@@ -298,8 +298,6 @@ function validarLogin() {
   return false; // Impede o envio do formulário
 }
 
-
-
 function previewImage() {
   var inputFile = document.getElementById('inputFile');
   if (inputFile.files && inputFile.files[0]) {
@@ -342,7 +340,7 @@ function validarLogin() {
 
   if (email === emailCorreto && senha === senhaCorreta) {
       sessionStorage.setItem('authenticated', 'true');
-      window.location.href = 'cadastroPro.html';
+      window.location.href = 'maezinha/assets/pages/cadastroPro.html';
       return false;
   } else {
       alert('Credenciais inválidas');
