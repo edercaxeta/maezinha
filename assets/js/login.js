@@ -316,16 +316,38 @@ function validarLogin() {
   const email = document.getElementById("emailLogin").value;
   const senha = document.getElementById("senhaLogin").value;
 
+  console.log("Email digitado:", email);  // Log do email digitado
+  console.log("Senha digitada:", senha);  // Log da senha digitada
+
   // Substitua pelos seus dados de login reais
   const emailCorreto = "edercaxeta10@hotmail.com";
   const senhaCorreta = "Gabi@1020";
 
   if (email === emailCorreto && senha === senhaCorreta) {
+    console.log("Credenciais corretas");  // Log de credenciais corretas
     sessionStorage.setItem("authenticated", "true");
-    window.location.href = "./cadastroPro.html";
+
+    // Caminho relativo ao diretório raiz do site
+    let relativePath = "";
+    const currentPath = window.location.pathname.split('/');
+
+    // Determina a profundidade do caminho atual
+    for (let i = 0; i < currentPath.length - 1; i++) {
+      if (currentPath[i] !== "") {
+        relativePath += "../";
+      }
+    }
+
+    console.log("Caminho relativo calculado:", relativePath);  // Log do caminho relativo calculado
+
+    // Redireciona usando o caminho relativo calculado
+    window.location.href = relativePath + "assets/pages/cadastroPro.html";
+
     return false;
   } else {
     alert("Credenciais inválidas");
+    console.log("Credenciais inválidas");  // Log de credenciais inválidas
     return false;
   }
 }
+
