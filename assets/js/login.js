@@ -188,7 +188,7 @@ function listar() {
           <td>${categoria.cidade}</td>
           <td>${categoria.estado}</td>
           <td>
-          <a href="javascript: excluir(${categoria.id});">Excluir</a>
+          <a onclick="excluir(${categoria.id});">Excluir</a>
           </td>
         </tr>
       `;
