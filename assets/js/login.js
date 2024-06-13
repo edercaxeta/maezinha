@@ -85,10 +85,10 @@ function salvar() {
     erros.push("Email inválido");
   }
   if (inputPassword4.length < 8) {
-    erros.push("A senha teve ter pelos monos 8 caracteres");
+    erros.push("A senha deve ter pelos menos 8 caracteres");
   }
   if (inputZip.length < 7) {
-    erros.push("O CEP teve ter pelos monos 7 caracteres");
+    erros.push("O CEP deve ter pelos menos 7 caracteres");
   }
   if (inputAddress.length < 1) {
     erros.push("Preencha o Logradouro completo");
