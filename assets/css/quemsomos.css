@@ -1,0 +1,84 @@
+.logo1{
+    color: rgb(236, 79, 131);
+    align-items: center;
+    font-size: 60px;
+    text-align: center;
+}
+
+.logo1 span{
+    color: rgb(225, 8, 8);
+    
+    font-size: 60px;
+}
+/*  Header  */
+
+.header-bottom-side-somos{
+    
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+header{
+    background-image: radial-gradient(#f4e3bf, #f0d69f );
+}
+
+.header-bottom-side-left-somos{
+    height: 100%;
+    flex-basis: 50%;
+}
+
+.header-bottom-side-left-somos h2{
+    font-size: 2.7rem;
+    margin-bottom: 1.5rem;
+    color: darkgoldenrod;
+}
+
+.header-bottom-side-left-somos h3{
+    font-size: 2.0rem;
+    margin-bottom: 1.5rem;
+    color:rgb(234, 171, 13);
+}
+
+.header-bottom-side-left-somos p{
+    line-height: 2.2rem;
+    margin-bottom: 1.9rem;
+    font-family:inherit;
+    font-size: 1.15rem;
+    color:rgb(53, 53, 83);
+    text-align: justify;
+
+}
+
+.header-bottom-side-left-somos button{
+    background-color:rgb(254, 23, 23);
+    border: none;
+    cursor: pointer;
+    padding: 0.8rem 3.8rem;
+    border-radius: 91px;
+    color: aliceblue;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.4s;
+    
+}
+
+.header-bottom-side-left-somos button:hover{
+    background-color:rgb(153, 2, 2) ;
+}
+
+
+
+.header-bottom-side-right-somos{
+    flex-basis: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.header-bottom-side-right-somos img{
+    width:100%;
+    height: 520px;
+    opacity: 0.9;
+}
