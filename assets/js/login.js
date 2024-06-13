@@ -329,7 +329,7 @@ function validarLogin() {
     if (currentPath === "/" || currentPath.endsWith("index.html")) {
       window.location.href = "./assets/pages/cadastroPro.html"; // Caminho relativo à raiz
     } else {
-      window.location.href = "./cadastroPro.html"; // Caminho relativo ao diretório atual
+      window.location.href = "https://edercaxeta.github.io/maezinha/assets/pages/cadastroPro.html"; // Caminho relativo ao diretório atual
     }
 
     return false;
