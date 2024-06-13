@@ -24,18 +24,7 @@ $(document).ready(function () {
   });
 });
 
-
-function enviar(
-  nome,
-  email,
-  senha,
-  cep,
-  logradouro,
-  complemento,
-  cidade,
-  estado,
-  aceite
-) {
+function enviar(nome, email, senha, cep, logradouro, complemento, cidade, estado, aceite) {
   const data = {
     nome: nome,
     email: email,
@@ -71,6 +60,8 @@ function enviar(
         icon: "error",
       });
     });
+
+  listar();
 }
 
 function salvar() {
@@ -84,17 +75,7 @@ function salvar() {
   let inputState = document.getElementById("inputState").value;
   let gridCheck = document.getElementById("gridCheck").checked;
 
-  console.log(
-    nome,
-    inputEmail4,
-    inputPassword4,
-    inputZip,
-    inputAddress,
-    inputAddress2,
-    inputCity,
-    inputState,
-    gridCheck
-  );
+  console.log(nome, inputEmail4, inputPassword4, inputZip, inputAddress, inputAddress2, inputCity, inputState, gridCheck);
 
   let erros = [];
   if (nome.indexOf(" ") === -1) {
@@ -127,17 +108,7 @@ function salvar() {
   console.log(erros);
 
   if (erros.length == 0) {
-    enviar(
-      nome,
-      inputEmail4,
-      inputPassword4,
-      inputZip,
-      inputAddress,
-      inputAddress2,
-      inputCity,
-      inputState,
-      gridCheck
-    );
+    enviar(nome, inputEmail4, inputPassword4, inputZip, inputAddress, inputAddress2, inputCity, inputState, gridCheck);
   } else {
     Swal.fire({
       title: "Preecha os Campos Corretamente!",
@@ -171,10 +142,10 @@ function listar() {
 
   function renderizar(Categoria) {
     let tabela = document.querySelector("#tabela tbody");
-    while(tabela.firstChild){
-      tabela.removeChild(tabela.firstChild)
+    while (tabela.firstChild) {
+      tabela.removeChild(tabela.firstChild);
     }
-   
+
     for (let categoria of Categoria) {
       let linha = `
         <tr>
@@ -188,7 +159,7 @@ function listar() {
           <td>${categoria.cidade}</td>
           <td>${categoria.estado}</td>
           <td>
-          <a onclick="excluir(${categoria.id});">Excluir</a>
+          <button style="background: red; color: white; padding: 4px; border-radius: 9px; border: none;" onclick="excluir('${categoria.id}');">Excluir</button>
           </td>
         </tr>
       `;
@@ -217,7 +188,11 @@ function excluir(id) {
         text: "Houve um Erro ao Excluir Usuario",
         icon: "error",
       });
+      listar();
     });
+
+    listar();
+
 }
 
 // Função para fazer o login
@@ -228,7 +203,7 @@ function login(email, senha) {
   };
 
   // Depuração: exibe os dados enviados para o servidor
-  console.log('Enviando dados para o servidor:', data);
+  console.log("Enviando dados para o servidor:", data);
 
   fetch("http://localhost:5249/api/Categoria/login", {
     method: "POST",
@@ -240,16 +215,16 @@ function login(email, senha) {
     .then((response) => {
       // Verifica se a resposta não é um sucesso
       if (!response.ok) {
-        throw new Error('Erro ao fazer login');
+        throw new Error("Erro ao fazer login");
       }
       return response.json(); // Converte a resposta para JSON
     })
     .then((result) => {
       // Depuração: exibe os dados recebidos do servidor
-      console.log('Resposta do servidor:', result);
+      console.log("Resposta do servidor:", result);
       if (result.user && result.user.id) {
         // Se o usuário estiver presente na resposta, consideramos o login bem-sucedido
-        localStorage.setItem('token', result.token);
+        localStorage.setItem("token", result.token);
         Swal.fire({
           title: "Sucesso",
           text: "Login realizado com sucesso",
@@ -257,12 +232,12 @@ function login(email, senha) {
         });
       } else {
         // Se não houver usuário na resposta, exibe uma mensagem de erro
-        throw new Error('Email ou senha incorretos');
+        throw new Error("Email ou senha incorretos");
       }
     })
     .catch((error) => {
       // Exibe uma mensagem de erro caso ocorra algum problema
-      console.error('Erro ao realizar login:', error);
+      console.error("Erro ao realizar login:", error);
       Swal.fire({
         title: "Erro",
         text: "Houve um erro ao realizar o login",
@@ -299,12 +274,14 @@ function validarLogin() {
 }
 
 function previewImage() {
-  var inputFile = document.getElementById('inputFile');
+  var inputFile = document.getElementById("inputFile");
   if (inputFile.files && inputFile.files[0]) {
     var reader = new FileReader();
     reader.onload = function (e) {
-      document.getElementById('imagePreview').innerHTML = 
-        '<img src="' + e.target.result + '" alt="Imagem selecionada" style="max-width: 100%; height: auto;">' +
+      document.getElementById("imagePreview").innerHTML =
+        '<img src="' +
+        e.target.result +
+        '" alt="Imagem selecionada" style="max-width: 100%; height: auto;">' +
         '<button class="btn btn-danger delete-btn" onclick="deleteImage()" style="margin-top: 10px;">Excluir</button>';
     };
     reader.readAsDataURL(inputFile.files[0]);
@@ -312,38 +289,43 @@ function previewImage() {
 }
 
 function deleteImage() {
-  document.getElementById('imagePreview').innerHTML = '';
-  document.getElementById('inputFile').value = "";
+  document.getElementById("imagePreview").innerHTML = "";
+  document.getElementById("inputFile").value = "";
 }
 
 function submitForm() {
-  var nome = document.getElementById('inputNome').value;
-  var email = document.getElementById('inputEmail').value;
-  var doacao = document.getElementById('inputDoacao').value;
+  var nome = document.getElementById("inputNome").value;
+  var email = document.getElementById("inputEmail").value;
+  var doacao = document.getElementById("inputDoacao").value;
 
-  var mailto_link = 'mailto:edercaxeta10@hotmail.com?subject=Nova Doação&body=' + 
-                    'Nome: ' + encodeURIComponent(nome) + '%0D%0A' + 
-                    'Email: ' + encodeURIComponent(email) + '%0D%0A' + 
-                    'Doação: ' + encodeURIComponent(doacao);
+  var mailto_link =
+    "mailto:edercaxeta10@hotmail.com?subject=Nova Doação&body=" +
+    "Nome: " +
+    encodeURIComponent(nome) +
+    "%0D%0A" +
+    "Email: " +
+    encodeURIComponent(email) +
+    "%0D%0A" +
+    "Doação: " +
+    encodeURIComponent(doacao);
 
   window.location.href = mailto_link;
 }
 
-
 function validarLogin() {
-  const email = document.getElementById('emailLogin').value;
-  const senha = document.getElementById('senhaLogin').value;
-  
+  const email = document.getElementById("emailLogin").value;
+  const senha = document.getElementById("senhaLogin").value;
+
   // Substitua pelos seus dados de login reais
-  const emailCorreto = 'edercaxeta10@hotmail.com';
-  const senhaCorreta = 'Gabi@1020';
+  const emailCorreto = "edercaxeta10@hotmail.com";
+  const senhaCorreta = "Gabi@1020";
 
   if (email === emailCorreto && senha === senhaCorreta) {
-      sessionStorage.setItem('authenticated', 'true');
-      window.location.href = 'maezinha/assets/pages/cadastroPro.html';
-      return false;
+    sessionStorage.setItem("authenticated", "true");
+    window.location.href = "maezinha/assets/pages/cadastroPro.html";
+    return false;
   } else {
-      alert('Credenciais inválidas');
-      return false;
+    alert("Credenciais inválidas");
+    return false;
   }
 }
