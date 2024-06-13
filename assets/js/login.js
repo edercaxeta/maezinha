@@ -200,7 +200,7 @@ function listar() {
 }
 
 function excluir(id) {
-  fetch("http://localhost:5249/api/Categoria/" + id, {
+  fetch("https://apiwpp.apaebrasil.org.br/delete-user/" + id, {
     method: "DELETE",
     mode: "cors",
     headers: {
